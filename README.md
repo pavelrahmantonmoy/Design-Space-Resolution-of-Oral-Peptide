@@ -1,1 +1,43 @@
-# Design-Space-Resolution-of-Oral-Peptide
+# Literature benchmark, Sobol and Monte Carlo analyses (BIDT – oral tirzepatide)
+
+This folder reproduces the literature-benchmark results reported in Sections 2.7, 2.8, 2.11, 3.3, 3.6 and 3.8, Table 5 and Figures 4 and 7 of the revised manuscript.
+
+## Data sources (values transcribed from the publications; nothing simulated or invented)
+
+| Reference | Values used |
+|---|---|
+| Vueba ML et al. Eur J Pharm Biopharm 2004;58:51–59 (ref. 46) | Table 4: Korsmeyer–Peppas K and n for F5 (HPMC K15M 20%) and F7 (HPMC K100M 20%) |
+| Levina M, Rajabi-Siahboomi AR. J Pharm Sci 2004;93:2746–2754 (ref. 51) | Table 3: T50 values; Table 4: Korsmeyer–Peppas k and n at 4, 10 and 14 kN (CPM, lactose filler) |
+| Maggi L et al. Int J Pharm 2000;195:229–238 (ref. 52) | Table 3: td75 for plain PEO WSR 303 (CY2) and HPMC K100M (CM2) matrices |
+
+## Files
+
+| File | Content |
+|---|---|
+| `benchmark_analysis.py` | Complete analysis: curve reconstruction, Peppas–Sahlin fitting, Sobol (SALib), Monte Carlo, figures |
+| `data/literature_benchmark_table.csv` | Benchmark values and Peppas–Sahlin fit results (Table 5) |
+| `data/sobol_kinetic_parameters.csv` | Sobol S1/ST with 95% confidence intervals (Figure 7) |
+| `data/monte_carlo_Q12h.csv` | Monte Carlo summary for Q12h |
+| `figures/Figure_Literature_Benchmark.png` | Figure 4 |
+| `figures/Figure7_Sobol_kinetic.png` | Figure 7 |
+| `requirements.txt` | Package versions used |
+
+## Reproduce
+
+```bash
+pip install -r requirements.txt
+python benchmark_analysis.py
+```
+
+Fixed random seeds (Sobol `seed=42`, Monte Carlo `default_rng(42)`) give identical outputs.
+
+## Method summary
+
+- Release curves are reconstructed from the published Korsmeyer–Peppas parameters (Vueba: 0.5–20 h; Levina: within the 5–60% fitting range).
+- Peppas–Sahlin model: Q(t) = k_d·t^0.45 + k_r·t^0.89, fitted with `scipy.optimize.curve_fit`.
+- Sobol: inputs k_d ∈ [0.0842, 0.1023], k_r ∈ [0.0223, 0.0270] (HPMC K100M to K15M fits); output Q12h; N = 1024, second-order on (6,144 evaluations).
+- Monte Carlo: k_d and k_r perturbed ±10% (uniform) around the HPMC K100M fit; N = 1,000.
+
+## Scope note
+
+The benchmark matrices differ from the tirzepatide bilayer tablet (drug, polymer content, filler). The analyses characterise literature-anchored release kinetics and are not formulation-specific validation.
