@@ -1,0 +1,8 @@
+Source,System,Drug,K_KP,n_KP,R2_KP,kd_PS,kr_PS,R2_PS,RMSE_PS_pct,Q12h_pct,T50_reported_min,T50_from_KP_min,td75_min
+Vueba 2004 (Table 4),F5 HPMC K15M 20%,Ketoprofen,12.047,0.621,0.999,0.1023,0.027,0.99922,0.623,55.9,,,
+Vueba 2004 (Table 4),F7 HPMC K100M 20%,Ketoprofen,9.926,0.621,0.9978,0.0842,0.0223,0.99922,0.514,46.1,,,
+Levina 2004 (Tables 3-4),"HPMC K4M 20%, CPM/lactose 4 kN",Chlorpheniramine maleate,3.5188,0.5822,0.9993,,,,,,95.0,95.0,
+Levina 2004 (Tables 3-4),"HPMC K4M 20%, CPM/lactose 10 kN",Chlorpheniramine maleate,1.2356,0.7268,0.9961,,,,,,160.0,163.0,
+Levina 2004 (Tables 3-4),"HPMC K4M 20%, CPM/lactose 14 kN",Chlorpheniramine maleate,1.2152,0.7367,0.9966,,,,,,175.0,155.0,
+Maggi 2000 (Table 3),CY2 PEO WSR 303 38.2%,Diltiazem HCl,,,,,,,,,,,246.0
+Maggi 2000 (Table 3),CM2 HPMC K100M 38.2%,Diltiazem HCl,,,,,,,,,,,357.0
